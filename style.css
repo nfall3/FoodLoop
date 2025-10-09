@@ -1,0 +1,85 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    min-height: 100vh;
+    background-color: #dfd6d6;
+    font-family: "DM Sans", "Inter", "Istok Web", sans-serif;
+}
+
+.navItems{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    background-color: #326A2f;
+    padding: 10px 20px;
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+nav ul{
+     width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.nav li{
+   height: 50px;
+}
+
+nav a{
+    height: 100%;
+    padding: 20px 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+nav a:hover{
+    background-color: #42813f;
+}
+
+nav li:first-child{
+    margin-right: auto;
+}
+
+.sideBar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999; /*Ensures sidebar is above other items in the web page and nothing covers it */
+    background-color: #326A2f;
+    backdrop-filter: #326a2f00 ;
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.sideBar li{
+    width: 100%;
+
+}
+
+.sideBar a{
+    width: 100%;
+}
+
+/*
+.foodPanBtn{
+    height: 100px;
+    width: 100px;
+    background-image: "foodPantry.jpg";
+
+}
+    */
+
