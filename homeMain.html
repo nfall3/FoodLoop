@@ -24,26 +24,26 @@
                 <!--The links will lead to the other website pages-->
                 <!--I.E: volunteerMain.html-->
                 <!--Preferably create them before linking to them-->
-                <li onclick=hideSidebar()>
+                <li onclick=hideSidebar() class="navLink">
                     <a href="#">
                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>  
                     </a>
                 </li>
-                <li class="navItem">
+                <li class="navLink">
                     <a class="navLink" href="">Login</a>  <!--Will fill out link once we have remaining pages-->
                 </li>
-                <li class="navItem">
+                <li class="navLink" >
                     <a class="navLink" href="">Volunteer</a>  <!--Will fill out link once we have remaining pages-->
                 </li>
-                 <li class="navItem">
+                 <li class="navLink">
                     <a class="navLink" href="">Donate</a>  <!--Will fill out link once we have remaining pages-->
                 </li>
-                 <li class="navItem">
+                 <li class="navLink">
                     <a class="navLink" href="">Receive</a>  <!--Will fill out link once we have remaining pages-->
                 </li>
 
                 <!--Moved FAQ from bottom of webpage to the side bar for a better look-->
-                <li class="navItem">
+                <li class="navLink">
                     <a class="navLink" href="">FAQ</a>  <!--Will fill out link once we have remaining pages-->
                 </li>
             </ul>     
@@ -51,7 +51,7 @@
             
             <!--List of items in the navigation bar-->
             <ul class="navItems">
-                <li class="navItem">
+                <li class="navItem Logo">
                      <img src="" alt="Website Logo: FoodLoop"> <!--Will add logo once i have it-->
                 </li>
                 <li class="navItem">
@@ -68,7 +68,7 @@
                 <li class="navItem">
                     <a class="navLink" href="">Login</a>  <!--Will fill out link once we have remaining pages-->
                 </li>
-                <li onclick=showSideBar()>
+                <li onclick=showSideBar() >
                     <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a>
                 </li>
             </ul>
@@ -80,10 +80,20 @@
         </button>
         -->
 
-        <form action="/foodPantry.png" method="">
-            <input type="image" src="/foodPantry.png" alt="Food Pantry Button">
-        </form>
-
+        <div class="buttonContainer">
+            <div class="btnBox">
+            <input type="button" class="button" id="foodPanBtn">
+            <p class="btnLabel">Food Pantry</p>
+            </div>    
+            <div class="btnBox">
+            <input type="button" class="button" id="offCollabBtn">
+            <p class="btnLabel">Official Collaborators</p>   
+            </div>
+            <div class="btnBox">
+            <input type="button" class="button" id="laFoodWasteBtn">
+            <p class="btnLabel">Louisiana Food Waste</p>
+            </div>
+        <div class="buttonContainer"></div>
 
         <script>
             function showSideBar(){
