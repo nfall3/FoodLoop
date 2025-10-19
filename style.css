@@ -17,15 +17,14 @@ body{
     padding: 10px 5vw;
     box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
     list-style: none;
-
 }
 
 .navLink{
     list-style: none;
+	padding: 20px 30px;
 }
 
 nav ul{
-     width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
