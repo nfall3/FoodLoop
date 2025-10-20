@@ -23,7 +23,7 @@ db.connect((err) => {
   }
 });
 
-// --- SIGNUP ROUTE ---
+
 app.post("/signup", (req, res) => {
   const { email, password } = req.body;
 
@@ -37,13 +37,13 @@ app.post("/signup", (req, res) => {
 
     const insertQuery = "INSERT INTO users (email, password) VALUES (?, ?)";
     db.query(insertQuery, [email, password], (err) => {
-      if (err) return res.status(500).json({ message: "Signup failed" });
-      res.status(200).json({ message: "Signup successful!" });
+    if (err) return res.status(500).json({ message: "Signup failed" });
+    res.status(200).json({ message: "Signup successful!" });
     });
   });
 });
 
-// --- LOGIN ROUTE (ADD THIS PART HERE) ---
+
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
 
@@ -67,7 +67,7 @@ app.post("/login", (req, res) => {
   });
 });
 
-// --- START SERVER ---
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
