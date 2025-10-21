@@ -39,7 +39,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-right: 1vw; /*added just a little space between screen and hamburger icon so they arent completely stuck together*/
+  margin-right: 1.2vw; /*added just a little space between screen and hamburger icon so they arent completely stuck together*/
 }
 
 /* Individual nav links */
@@ -114,7 +114,8 @@ nav {
   background-color: #3b7839;
 }
 
-/*button images on home page*/
+
+/*image buttons on home page*/
 .buttonContainer {
   display: flex;
   justify-content: center;
