@@ -1,138 +1,181 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-    min-height: 100vh;
-    background-color: #f5eee4;
-    font-family: "DM Sans", "Inter", "Istok Web", sans-serif;
+body {
+  min-height: 100vh;
+  background-color: #f5eee4;
+  font-family: "DM Sans", "Inter", "Istok Web", sans-serif;
+  overflow-y: hidden; /*prevent vertical scrolling*/
 }
 
-.navItems{
-    display: flex;
-    justify-content: space-between;
-    align-items:center;
-    background-color: #326A2f;
-    padding: 10px 5vw;
-    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
-    list-style: none;
-
+/* navigation bar base */
+nav {
+  width: 100%;
+  background-color: #326a2f;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01);
 }
 
-.navLink{
-    list-style: none;
+/* Layout of nav items */
+.navItems {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0; /* adjusted from 5vw to 0 to get rid of akwards spacing between hamburger icon and right side of screen*/
+  margin: 0 0;
+  list-style: none;
 }
 
-nav ul{
-     width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+/* Align logo to left */
+.Logo img {
+  height: 45px;
+  margin-left: 1vw; /*added a little space between logo and left side of screen for better appearance*/
 }
 
-.nav li{
-   height: 50px;
+/* Align nav links + hamburger on the right */
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 1vw; /*added just a little space between screen and hamburger icon so they arent completely stuck together*/
 }
 
-nav a{
-    height: 100%;
-    padding: 20px 30px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    color: white;
+/* Individual nav links */
+.navItem {
+  list-style: none;
 }
 
-nav a:hover{
-    background-color: #42813f;
+.navLink {
+  color: white; /*font color*/
+  text-decoration: none;
+  padding: 10px 16px;
+  display: block;
+  font-weight: 500;
+  transition: background-color 0.6s ease-in-out; /*slowed transition for a more fade in shadow hover and made it transition both in and out*/
 }
 
-nav li:first-child{
-    margin-right: auto;
+.navLink:hover {
+  background-color: #3b7839;
+  border-radius: 4px;
 }
-.menuIcon{
+
+/* Hamburger icon always visible */
+.hamburger {
+  display: block;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.hamburger svg {
+  fill: #fff; 
+  transition: transform 0.2s ease;
+}
+
+.hamburger:hover svg {
+  transform: scale(1.1);
+}
+
+/* side bar styling*/
+.sideBar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 230px;
+  z-index: 999;
+  background-color: #326a2f;
+  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: column;
+  align-items: stretch; /* ensures full-width alignment */
+  justify-content: flex-start;
+  padding-top: 15px;
+}
+
+/* sidebar list items span full width because of shadow when hovering*/
+.sideBar li {
+  width: 100%;
+}
+
+/* Links fill full sidebar width, same reason as before*/
+.sideBar a {
+  width: 100%;
+  color: white;
+  text-decoration: none;
+  padding: 15px 20px;
+  display: block;
+  transition: background-color 0.2s ease;
+}
+
+/* full-width hover highlight */
+.sideBar a:hover {
+  background-color: #3b7839;
+}
+
+/*button images on home page*/
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10vw;
+  margin-top: 150px;
+  width: 100%;
+}
+
+.btnBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.button {
+  background-color: #f5eee4; /*so button background blends in with image color and body color*/
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 25vw;
+  max-width: 220px;
+  aspect-ratio: 1 / 1;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.btnLabel {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #326a2f;
+  font-weight: 600;
+}
+
+/*add images to the buttons*/
+#foodPanBtn {
+  background-image: url('foodPantry.png');
+}
+#offCollabBtn {
+  background-image: url('officalCollabs.png');
+}
+#laFoodWasteBtn {
+  background-image: url('laFoodWaste.png');
+}
+
+/* For mobile screens, making it so only hamburger icon shows on smaller screens*/
+
+@media (max-width: 768px) {  /*max width of screen*/
+  /* hide desktop links on mobile */
+  .navRight .navItem {
     display: none;
+  }
+
+  /* hamburger stays visible */
+  .hamburger {
+    display: block;
+  }
 }
-.sideBar{
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 250px;
-    z-index: 999; /*Ensures sidebar is above other items in the web page and nothing covers it */
-    background-color: #326A2f;
-    backdrop-filter: #326a2f00 ;
-    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-
-.sideBar li{
-    width: 100%;
-
-}
-
-.sideBar a{
-    width: 100%;
-}
-
-.buttonContainer{
-display: flex;
-justify-content: center;
-flex-wrap: wrap;
-gap: 10vw;
-margin-top: 150px;
-width: 100%;
-min-height: calc(100vh-150px); /*keep centered within view*/
-}
-
-.btnBox{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.button{
-    background-color: #f5eee4;
-    background-position:center;
-    background-repeat: no-repeat;
-    background-size:contain;
-
-    width: 25vw;
-    max-width: 220px;
-    aspect-ratio: 1 /1;
-
-   border: none;
-   outline: none;
-   cursor: pointer;
-
-   transition: transform 0.2s ease;
-}
-.btnLabel{
-    margin-top: 20px;
-    font-size: 1.5rem;
-    color:#326A2f;
-    font-weight:600;
-    font-family: sans-serif;
-}
-
-.button:hover{
-    transform: scale(1.05);
-}
-
-#foodPanBtn{
-    background-image:url('foodPantry.png');
-}
-#offCollabBtn{
-    background-image: url('officalCollabs.png');
-}
-#laFoodWasteBtn{
-    background-image: url('laFoodWaste.png');
-}
-
-
-

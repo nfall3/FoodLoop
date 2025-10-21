@@ -24,6 +24,7 @@
                 <!--The links will lead to the other website pages-->
                 <!--I.E: volunteerMain.html-->
                 <!--Preferably create them before linking to them-->
+                <div>
                 <li onclick=hideSidebar() class="navLink">
                     <a href="#">
                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>  
@@ -46,33 +47,33 @@
                 <li class="navLink">
                     <a class="navLink" href="">FAQ</a>  <!--Will fill out link once we have remaining pages-->
                 </li>
+                </div>
             </ul>     
             
             
-            <!--List of items in the navigation bar-->
-            <ul class="navItems">
+           <ul class="navItems">
                 <li class="navItem Logo">
-                     <img src="" alt="Website Logo: FoodLoop"> <!--Will add logo once i have it-->
-                </li>
-                <li class="navItem">
-                    <a class="navLink" href="">Volunteer</a>  <!--Will fill out link once we have remaining pages-->
-                </li>
-                 <li class="navItem">
-                    <a class="navLink" href="">Donate</a>  <!--Will fill out link once we have remaining pages-->
-                </li>
-                 <li class="navItem">
-                    <a class="navLink" href="">Receive</a>  <!--Will fill out link once we have remaining pages-->
+                    <img src="" alt="Website Logo: FoodLoop">
                 </li>
 
-                <!--Added login item unlike original design for easier login ability-->
-                <li class="navItem">
-                    <a class="navLink" href="">Login</a>  <!--Will fill out link once we have remaining pages-->
-                </li>
-                <li onclick=showSideBar() >
-                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a>
-                </li>
-            </ul>
-        </nav>
+             <!-- Right-aligned group -->
+            <div class="navRight">
+                 <li class="navItem"><a class="navLink" href="">Volunteer</a></li>
+                <li class="navItem"><a class="navLink" href="">Donate</a></li>
+                <li class="navItem"><a class="navLink" href="">Receive</a></li>
+                <li class="navItem"><a class="navLink" href="">Login</a></li>
+
+                <!-- Always visible hamburger -->
+                <li class="hamburger" onclick="showSideBar()">
+                         <a href="#">
+                         <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#fff">
+                             <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+                         </svg>
+                       </a>
+                 </li>
+            </div>
+        </ul>
+    </nav>
 
         <!--
         <button class="foodPanBtn">
