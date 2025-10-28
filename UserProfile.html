@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodLoop - User Profile</title>
+    <link rel="stylesheet" href="ProfileStyling.css">
+    <!-- ProfileStyling.css contains page layout, colors and responsive rules -->
+</head>
+<body>
+    <!-- Primary header and navigation -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">FoodLoop</div>
+            <ul class="nav-links">
+                <!-- Top-level navigation: onclick handlers call showTab(tabName) in ProfileScript.js -->
+                <li><a href="#" onclick="showTab('home')">Home</a></li>
+                <li><a href="#" onclick="showTab('volunteer')">Volunteer</a></li>
+                <li><a href="#" onclick="showTab('donate')">Donate</a></li>
+                <li><a href="#" onclick="showTab('rescue')">Rescue</a></li>
+            </ul>
+            <div class="profile-icon">KM</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Left column: user's profile card with avatar, stats and actions -->
+        <aside class="profile-card">
+            <!-- Clicking the avatar triggers editProfile() in ProfileScript.js -->
+            <div class="profile-avatar" onclick="editProfile()">
+                
+                <div class="edit-icon">✏️</div>
+            </div>
+            
+            <div class="profile-info">
+                <h2 class="profile-name">Ke'Anna Mckinney</h2>
+                <p class="profile-role">Food Rescue Volunteer</p>
+                
+                <!-- Quick stats; each item uses showDetails(type) to display more info -->
+                <div class="profile-stats">
+                    <div class="stat-item" onclick="showDetails('donations')">
+                        <span class="stat-number">24</span>
+                        <span class="stat-label">Donations</span>
+                    </div>
+                    <div class="stat-item" onclick="showDetails('rescues')">
+                        <span class="stat-number">18</span>
+                        <span class="stat-label">Rescues</span>
+                    </div>
+                    <div class="stat-item" onclick="showDetails('impact')">
+                        <span class="stat-number">156</span>
+                        <span class="stat-label">Meals Saved</span>
+                    </div>
+                    <div class="stat-item" onclick="showDetails('hours')">
+                        <span class="stat-number">42</span>
+                        <span class="stat-label">Hours</span>
+                    </div>
+                </div>
+
+                <!-- Action buttons wired to functions in ProfileScript.js -->
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="editProfile()">Edit Profile</button>
+                </div>
+            </div>
+        </aside>
+    </main>
+    <!-- Load behavior: ProfileScript.js defines the functions referenced above (editProfile, newActivity, etc.) -->
+    <script src="ProfileScript.js"></script>
+</body>
+</html>
