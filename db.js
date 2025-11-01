@@ -1,21 +1,26 @@
-const mysql = require("mysql2");
+const mysql = require("mssql");
 const dotenv = require("dotenv");
 
 dotenv.config();
 
-const connection = mysql.createConnection({
-  host: process.env.DATABASE_HOST || "localhost",
-  user: process.env.DATABASE_USER || "root",
-  password: process.env.DATABASE_PASSWORD || "",
-  database: process.env.DATABASE_NAME || "foodloop",
-  port: Number(process.env.DATABASE_PORT) || 3306
-});
+const connection = {
+  host: "localhost\\SQLEXPRESS",
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  database: "foodloop",
+  port: parseInt(process.env.DATABASE_PORT, 10) || 1433
+};
 
-connection.connect((error) => {
-  if (error) {
-    console.log("Unable to connect to MySQL", error);
-    return;
+async function connect() {
+  try {
+    await mysql.connect(connection);
+    console.log("Database connected");
+    } catch (err) {
+      console.error("Database failed:", err);
   }
+}
+
+connect();
 
   const userEmail = "user@testexample.com";
   console.log("Successfully connected to MySQL Database");
@@ -42,6 +47,5 @@ connection.connect((error) => {
       console.log("Connection closed");
     });
   });
-});
 
 module.exports = connection;
