@@ -23,7 +23,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0; /* adjusted from 5vw to 0 to get rid of akwards spacing between hamburger icon and right side of screen*/
+  padding: 20px 0; /* adjusted from 5vw to 0 to get rid of akwards spacing between hamburger icon and right side of screen*/
   margin: 0 0;
   list-style: none;
 }
