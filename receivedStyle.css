@@ -18,6 +18,12 @@ nav {
   width: 100%;
   background-color: #326a2f;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999999999;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .navItems {
@@ -122,7 +128,9 @@ nav {
   text-align: center;
   color: #326a2f;
   font-weight: 600;
-  margin-bottom: 25px;
+  margin-top: 90px;
+  margin-bottom: -80px;
+  padding: 30px 35px;
 }
 
 form label {
@@ -151,27 +159,54 @@ form textarea:focus {
   outline: none;
 }
 
-/* Required icon beside label */
-#reqTag {
-  margin-left: 5px;
-  vertical-align: middle;
+/*========================Required Tags================================*/
+#reqTag1 {
+  position: relative;
+  left: 135px;
+  bottom: 23px;
+}
+
+#reqTag2 {
+  position: relative;
+  left: 253px;
+  bottom: 23px;
+}
+
+#reqTag3 {
+  position: relative;
+  left: 190px;
+  bottom: 23px;
+}
+
+#reqTag4 {
+  position: relative;
+  left: 314px;
+  bottom: 23px;
+}
+
+#reqTag5 {
+  position: relative;
+  left: 404px;
+  bottom: 23px;
+}
+
+#reqTag6 {
+  position: relative;
+  left: 304px;
+  bottom: 23px;
 }
 
 /* ========================= RADIO GROUPS ========================= */
-/* ========================= RADIO GROUPS ========================= */
 .radioGroup {
-  display: flex;
-  flex-wrap: wrap;
+ /* display: flex;*/
+  /*flex-wrap: wrap;*/
   align-items: center;
-  gap: 25px; /* space between options */
-  margin-top: 10px;
   margin-bottom: 20px;
 }
 
 .radioGroup label {
   display: inline-flex;
   align-items: center;
-  gap: 6px; /* space between circle and text */
   font-size: 15px;
   cursor: pointer;
 }
@@ -181,7 +216,9 @@ form textarea:focus {
   cursor: pointer;
   margin: 0;
   vertical-align: middle;
-  transform: scale(1.15); /* slightly larger for accessibility */
+  transform: scale(1.15); /* made buttons a little bigger*/
+  margin: 8px;
+  
 }
 
 
@@ -217,7 +254,7 @@ input[type="submit"] {
   transition: background-color 0.3s ease;
 }
 
-input[type="submit"]:hover {
+#submit:hover {
   background-color: #3b7839;
 }
 
