@@ -280,3 +280,9 @@ input[type="submit"] {
     gap: 8px;
   }
 }
+
+#charCount{
+  position: relative;
+  left: 480px;
+  bottom: 18px;
+}
