@@ -1,3 +1,4 @@
+import logo from './logo.png';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
@@ -42,7 +43,7 @@ function Login() {
   return (
     <div className="login-page">
       <header className="header">
-        <h1 className="title">FoodLoop</h1>
+         <img src={logo} alt="FoodLoop Logo" className="logo-img" />
         <button className="signup-btn" onClick={() => navigate("/signup")}>
           Sign Up
         </button>

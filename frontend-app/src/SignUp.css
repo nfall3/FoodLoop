@@ -20,6 +20,12 @@ body {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
+.header .logo-img {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
+}
+
 .title {
   font-size: 40px;
   font-weight: bold;
@@ -106,7 +112,6 @@ input {
 .message {
   color: green;
 }
-
 .footer {
     background-color: #326A2f;
   color: white;
@@ -115,4 +120,36 @@ input {
   font-weight: bold;
   box-shadow: 0 -4px 6px rgba(0,0,0,0.1);
 
+}
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+.checkbox-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-align: left !important;
+  white-space: nowrap;
+}
+.checkbox-item label {
+  text-align: left !important;
+  width: auto;
+  display: inline-block;
+}
+.checkbox-item label {
+  font-size: 14px;
+}
+.checkbox-item a {
+  font-size: 14px;
+}
+.checkbox-item a {
+  color: #2a677e;
+  text-decoration: none;
+}
+.checkbox-item a:hover {
+  text-decoration: underline;
 }
