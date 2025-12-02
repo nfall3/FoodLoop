@@ -1,0 +1,262 @@
+/* Reset / base rules: remove default spacing and use border-box for predictable sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+/* Page-level typography and background */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    }
+
+ /* Header styles: top navigation bar with gradient background */
+.header {
+    background: linear-gradient(135deg, #6b7c3d, #8ba652);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Header content layout: logo, navigation links, and avatar */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    }
+
+/* Brand / logo */
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    }
+
+/* Horizontal navigation links */
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    }
+
+/* Nav link visuals and hover transition */
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    }
+
+/* Hover color for nav links */
+.nav-links a:hover {
+    color: #c5d677;
+    }
+
+/* Small circular profile icon in the top-right */
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7c3d;
+    font-weight: bold;
+    }
+
+/* Main layout: two-column grid (profile card + activity feed) */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    }
+
+/* Profile card styling: white card with rounded corners and lift on hover */
+.profile-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    height: fit-content;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+/* Hover effect for profile card */
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+/* Avatar circle inside profile card */
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6b7c3d, #8ba652);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: white;
+    font-size: 3rem;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    }
+
+/* Slight scale on hover for the avatar */
+.profile-avatar:hover {
+    transform: scale(1.05);
+    }
+
+/* Small circular edit icon positioned inside the avatar */
+.edit-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: white;
+    border-radius: 50%;
+    padding: 8px;
+    color: #6b7c3d;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+/* Text alignment for profile details */
+.profile-info {
+    text-align: center;
+    }
+
+/* Name and role styles */
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+    }
+
+/* Role / subtitle color */
+.profile-role {
+    color: #6b7c3d;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    }
+
+/* Grid layout for quick stats boxes */
+.profile-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    }
+
+/* Individual stat boxes with hover flip to brand color */
+.stat-item {
+    background: #f8f9fd;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    }
+
+/* Hover for stat item (inverts to brand color) */
+.stat-item:hover {
+    background: #6b7c3d;
+    color: white;
+    transform: translateY(-2px);
+    }
+
+/* Number (prominent) inside stat item */
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: block;
+    }
+
+/* Label (muted) under stat number */
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    }
+
+
+/* Action buttons layout inside profile card */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    }
+
+/* Generic button appearance shared by primary & secondary */
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    flex: 1;
+    }
+
+/* Primary button uses brand gradient */
+.btn-primary {
+    background: linear-gradient(135deg, #6b7c3d, #8ba652);
+    color: white;
+    }
+
+/* Hover for primary button */
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(107, 124, 61, 0.3);
+    }
+
+/* Secondary button: outlined */
+.btn-secondary {
+    background: white;
+    color: #6b7c3d;
+    border: 2px solid #6b7c3d;
+    }
+
+/* Hover for secondary button */
+.btn-secondary:hover {
+    background: #6b7c3d;
+    color: white;
+    }
+
+/* Responsive tweaks: collapse to single column on small screens */
+@media (max-width: 768px) {
+.container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 1rem auto;
+    padding: 0 1rem;
+    }
+            
+.nav-links {
+    display: none;
+    }
+}
+
+/* Simple slide-in animation used on load for the main cards*/
+@keyframes slideInUp {
+    from {
+    opacity: 0;
+    transform: translateY(30px);
+ }
+ to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+}
+
+.profile-card{
+    animation: slideInUp 0.6s ease forwards;
+}
