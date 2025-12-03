@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            FoodLoop Donation Review
+        </title>
+        <meta charset="UTF-8">
+
+        <!--Ensures that webpage will be responsive and adapt to screen size-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="receivedStyle.css">
+
+        <!--Links for importing fonts: DM sans, Inter, and Intok Web-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100..900&family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <nav>
+            <!--Made a side Bar for smaller screen sizes, AKA: Mobile devices-->
+            <!--Original Design did not include the side bar-->
+            <ul class="sideBar">
+                <!--The links will lead to the other website pages-->
+                <!--I.E: volunteerMain.html-->
+                <!--Preferably create them before linking to them-->
+                <div>
+                <li onclick=hideSidebar() class="navLink">
+                    <a href="#">
+                       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>  
+                    </a>
+                </li>
+                  <li class="navLink">
+                    <a class="navLink" href="homeMain.html">Home</a>  <!--Main Page linked-->
+                </li>
+                <li class="navLink">
+                    <a class="navLink" href="">Profile</a>  <!--Will fill out link once we have remaining pages-->
+                </li>
+                <li class="navLink" >
+                    <a class="navLink" href="">Volunteer</a>  <!--Will fill out link once we have remaining pages-->
+                </li>
+                 <li class="navLink">
+                    <a class="navLink" href="">Listings</a>  <!--Will fill out link once we have remaining pages-->
+                </li>
+               
+
+                <!--Moved FAQ from bottom of webpage to the side bar for a better look-->
+                <li class="navLink">
+                    <a class="navLink" href="">FAQ</a>  <!--Will fill out link once we have remaining pages-->
+                </li>
+                </div>
+            </ul>     
+
+
+           <ul class="navItems">
+                <li class="navItem Logo">
+                    <img src="FoodLoopLogoTransparent.png" alt="Website Logo: FoodLoop">
+                </li>
+
+             <!-- Right-aligned group -->
+            <div class="navRight">
+                <li class="navItem"><a class="navLink" href="homeMain.html">Home</a></li>     <!--Main page linked-->       
+                 <li class="navItem"><a class="navLink" href="">Volunteer</a></li>
+                <li class="navItem"><a class="navLink" href="">Listings</a></li>
+                <li class="navItem"><a class="navLink" href="">Profile</a></li>
+
+                <!-- Always visible hamburger -->
+                <li class="hamburger" onclick="showSideBar()">
+                         <a href="#">
+                         <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#fff">
+                             <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+                         </svg>
+                       </a>
+                 </li>
+            </div>
+        </ul>
+    </nav>
+
+
+     <h1 class="formTitle">Donation Review</h1>
+    <div class="receiveForm">
+        <form action="#" method="post">
+            <!--Donation Id should be stored in database and review linked to ID-->
+            <label for="uID">Enter Donation ID</label>
+            <svg xmlns="http://www.w3.org/2000/svg" id="reqTag1" height="10px" viewBox="0 -960 960 960" width="10px" fill="#BB271A"><path d="M440-120v-264L254-197l-57-57 187-186H120v-80h264L197-706l57-57 186 187v-264h80v264l186-187 57 57-187 186h264v80H576l187 186-57 57-186-187v264h-80Z"/></svg>
+            <input type="text" id="uID" required><br><br>
+
+            <!--Did you even get the donation?-->
+            <label for="y/n"> Have you received the donation?</label>
+            <svg xmlns="http://www.w3.org/2000/svg" id="reqTag2" height="10px" viewBox="0 -960 960 960" width="10px" fill="#BB271A"><path d="M440-120v-264L254-197l-57-57 187-186H120v-80h264L197-706l57-57 186 187v-264h80v264l186-187 57 57-187 186h264v80H576l187 186-57 57-186-187v264h-80Z"/></svg><br>
+
+            <div class="radioGroup">
+            <input type="radio" name="y/n" value="y" required>
+            <label for="y">Yes</label><br>
+
+            <input type="radio" name="y/n" value="n">
+            <label for="n">No</label><br><br>
+            </div>
+
+                
+            <!--Review on Package donation was recieved in-->
+            <label for="containorInfo">How was the packaging?</label>
+             <svg xmlns="http://www.w3.org/2000/svg" id="reqTag3" height="10px" viewBox="0 -960 960 960" width="10px" fill="#BB271A"><path d="M440-120v-264L254-197l-57-57 187-186H120v-80h264L197-706l57-57 186 187v-264h80v264l186-187 57 57-187 186h264v80H576l187 186-57 57-186-187v264h-80Z"/></svg><br>
+                <div class="radioGroup">
+            <input type="radio" name="containorInfo" value="perfect" required>
+            <label>Perfect</label><br>
+            
+            <input type="radio" name="containorInfo" value="good">
+            <label>Good</label><br>
+
+            <input type="radio" name="containorInfo" value="average">
+            <label>Average</label><br>
+
+            <input type="radio" name="containorInfo" value="bad">
+            <label>Bad</label><br><br>
+                    </div>
+
+            <!--Were the contents of the donation as described? Was the quality good-->
+            <label for="donationInfo">How Were the Contents of the Donation?</label>
+             <svg xmlns="http://www.w3.org/2000/svg" id="reqTag4" height="10px" viewBox="0 -960 960 960" width="10px" fill="#BB271A"><path d="M440-120v-264L254-197l-57-57 187-186H120v-80h264L197-706l57-57 186 187v-264h80v264l186-187 57 57-187 186h264v80H576l187 186-57 57-186-187v264h-80Z"/></svg><br>
+<div class="radioGroup">
+            <input type="radio" name="donationInfo" value="perfect"  required>
+            <label>Perfect</label><br>
+            
+            <input type="radio" name="donationInfo" value="good">
+            <label>Good</label><br>
+
+            <input type="radio" name="donationInfo" value="average">
+            <label>Average</label><br>
+
+            <input type="radio" name="donationInfo" value="bad">
+            <label>Bad</label><br><br>
+</div>
+
+            <!--Does expiration Date match?-->
+            <label for="expirationDate">Did the Expiration Date Match what was Advertised?</label>
+             <svg xmlns="http://www.w3.org/2000/svg" id="reqTag5" height="10px" viewBox="0 -960 960 960" width="10px" fill="#BB271A"><path d="M440-120v-264L254-197l-57-57 187-186H120v-80h264L197-706l57-57 186 187v-264h80v264l186-187 57 57-187 186h264v80H576l187 186-57 57-186-187v264h-80Z"/></svg><br>
+        <div class="radioGroup">
+            <input type="radio" name="expirationDate" value="yes" id="yesExpir" required>
+            <label for="yesExpir">Yes</label><br>
+            
+            <input type="radio" name="expirationDate" value="no" id="noExpir">
+            <label for="noExpir">No</label><br><br>
+        </div>
+
+            <!--Inputing actual expiration date if no is selected-->
+            <!--Hidden except for when no is selected-->
+            <!--Set aside creating the JS for this as I had trouble with creating the function-->
+            <!--Wouldn't Work-->
+            <div id="actualExpirationContainor" style="display: none;">
+                <label for="actualExpiration"> Please Enter the Actual Expiration Date:</label>
+                <svg xmlns="http://www.w3.org/2000/svg" id="reqTag6" height="10px" viewBox="0 -960 960 960" width="10px" fill="#BB271A"><path d="M440-120v-264L254-197l-57-57 187-186H120v-80h264L197-706l57-57 186 187v-264h80v264l186-187 57 57-187 186h264v80H576l187 186-57 57-186-187v264h-80Z"/></svg><br>
+                <input type="date" name="actualExpiration" id="actualExpiration"> <!--used date input type for convenience-->
+                <br><br>
+            </div>
+
+            <label>Comments?</label><br>
+            <textarea name="free-text" id="free-text" maxlength="300" rows="4" cols="5"></textarea><br><br> <!--Added a 300 character limit-->
+            <span id="charCount">0/300</span><br>
+
+
+            <input type="submit" id="submit">
+
+        </form>
+    </div>
+
+    <script src="receivedScript.js" ></script> 
+    
+     <!--
+    //Ommiting for debugging
+    <div id="react-root"></div> //<-For react output (character count)
+    -->
+
+    </body>
+</html>
