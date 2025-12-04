@@ -8,7 +8,7 @@
 
         <!--Ensures that webpage will be responsive and adapt to screen size-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="donateStyle.css">
+        <link rel="stylesheet" href="css/donateStyle.css">
 
         <!--Links for importing fonts: DM sans, Inter, and Intok Web-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,15 +51,15 @@
 
            <ul class="navItems">
                 <li class="navItem Logo">
-                    <img src="FoodLoopLogoTransparent.png" alt="Website Logo: FoodLoop">
+                    <img src="images/FoodLoopLogoTransparent.png" alt="Website Logo: FoodLoop">
                 </li>
 
              <!-- Right-aligned group -->
             <div class="navRight">
                 <li class="navItem"><a class="navLink" href="homeMain.html">Home</a></li>
+                <li class="navItem"><a class="navLink" href="requestMain.html">Request</a></li>
                 <li class="navItem"><a class="navLink" href="donateMain.html">Donate</a></li>
                 <li class="navItem"><a class="navLink" href="receivedMain.html">Receive</a></li>
-                <li class="navItem"><a class="navLink" href="listingsMain.html">Listings</a></li>
 
                 <!-- Always visible hamburger -->
                 <li class="hamburger" onclick="showSideBar()">
@@ -74,46 +74,40 @@
     </nav>
 
 
-     <h1 class="formTitle">Donation Form</h1>
-     <form class="donateForm" action="#" method="post">
+     <h1 class="formTitle">Request Form</h1>
+     <form class="donateForm" action="/submitDonation" method="post">
 
-        <label for="donationName">Please Enter Item Name:</label>
+        <label for="donationName">Please enter item requested:</label>
         <svg xmlns="http://www.w3.org/2000/svg" id="reqTag1" height="10px" viewBox="0 -960 960 960" width="10px" fill="#BB271A"><path d="M440-120v-264L254-197l-57-57 187-186H120v-80h264L197-706l57-57 186 187v-264h80v264l186-187 57 57-187 186h264v80H576l187 186-57 57-186-187v264h-80Z"/></svg>
-        <input type="text" required>
+        <input type="text" name="donationName" required>
 
-        <label for="expiration">Please Enter Expiration/Creation Date on Packaging: </label>
-        <svg xmlns="http://www.w3.org/2000/svg" id="reqTag2" height="10px" viewBox="0 -960 960 960" width="10px" fill="#BB271A"><path d="M440-120v-264L254-197l-57-57 187-186H120v-80h264L197-706l57-57 186 187v-264h80v264l186-187 57 57-187 186h264v80H576l187 186-57 57-186-187v264h-80Z"/></svg>
-        <input type="date" name="expiration" id="expiration" required>
-
-        <label for="Allergens">Please Enter Any Known Allergens:</label>
-        <svg xmlns="http://www.w3.org/2000/svg" id="reqTag3" height="10px" viewBox="0 -960 960 960" width="10px" fill="#BB271A"><path d="M440-120v-264L254-197l-57-57 187-186H120v-80h264L197-706l57-57 186 187v-264h80v264l186-187 57 57-187 186h264v80H576l187 186-57 57-186-187v264h-80Z"/></svg>
-        <input type="text" class="Allergens" required>
-
-        <label for="description">Please Describe the item you are donating:</label>
+        <label for="description">Please describe the item you are requesting:</label>
         <svg xmlns="http://www.w3.org/2000/svg" id="reqTag4" height="10px" viewBox="0 -960 960 960" width="10px" fill="#BB271A"><path d="M440-120v-264L254-197l-57-57 187-186H120v-80h264L197-706l57-57 186 187v-264h80v264l186-187 57 57-187 186h264v80H576l187 186-57 57-186-187v264h-80Z"/></svg>
-        <textarea name="description" id="description" cols="5" rows="4" maxlength="300" required></textarea>
+        <textarea name="donationDesc" id="description" cols="5" rows="4" maxlength="300" required></textarea>
 
-        <label for="servingSize">Please Enter the Number of People the Donation Feeds:</label>
+        <label for="allergies">Please enter any known allergies:</label>
+        <svg xmlns="http://www.w3.org/2000/svg" id="reqTag3" height="10px" viewBox="0 -960 960 960" width="10px" fill="#BB271A"><path d="M440-120v-264L254-197l-57-57 187-186H120v-80h264L197-706l57-57 186 187v-264h80v264l186-187 57 57-187 186h264v80H576l187 186-57 57-186-187v264h-80Z"/></svg>
+        <input type="text" name="allergies" class="allergies">
+
+        <label for="address">Please enter your address:</label>
         <svg xmlns="http://www.w3.org/2000/svg" id="reqTag5" height="10px" viewBox="0 -960 960 960" width="10px" fill="#BB271A"><path d="M440-120v-264L254-197l-57-57 187-186H120v-80h264L197-706l57-57 186 187v-264h80v264l186-187 57 57-187 186h264v80H576l187 186-57 57-186-187v264h-80Z"/></svg>
-        <input type="number" id="servingSize" required>
+        <input type="text" name="homeAddress" id="address" required>
 
-        <label for="pickUpDate">Please Enter the Pickup Date:</label>
+        <label for="pickUpDate">Please enter the pickup date:</label>
         <svg xmlns="http://www.w3.org/2000/svg" id="reqTag8" height="10px" viewBox="0 -960 960 960" width="10px" fill="#BB271A"><path d="M440-120v-264L254-197l-57-57 187-186H120v-80h264L197-706l57-57 186 187v-264h80v264l186-187 57 57-187 186h264v80H576l187 186-57 57-186-187v264h-80Z"/></svg>
-        <input type="date" required>
+        <input type="date" name="pickupDate" required>
 
-        <label for="pickUpTimeStart">Please Enter your Preferred Pick Up Start Time: </label>
+        <label for="pickUpTimeStart">Please enter your preferred pick up start time: </label>
         <svg xmlns="http://www.w3.org/2000/svg" id="reqTag6" height="10px" viewBox="0 -960 960 960" width="10px" fill="#BB271A"><path d="M440-120v-264L254-197l-57-57 187-186H120v-80h264L197-706l57-57 186 187v-264h80v264l186-187 57 57-187 186h264v80H576l187 186-57 57-186-187v264h-80Z"/></svg>
-        <input type="time" id="pickUpTimeStart" required>
+        <input type="time" name="pickupStart" id="pickUpTimeStart">
 
-        <label for="pickUpTimeEnd">Please Enter your Preferred Pick Up End Time:</label>
+        <label for="pickUpTimeEnd">Please enter your preferred pick up end time:</label>
         <svg xmlns="http://www.w3.org/2000/svg" id="reqTag7" height="10px" viewBox="0 -960 960 960" width="10px" fill="#BB271A"><path d="M440-120v-264L254-197l-57-57 187-186H120v-80h264L197-706l57-57 186 187v-264h80v264l186-187 57 57-187 186h264v80H576l187 186-57 57-186-187v264h-80Z"/></svg>
-        <input type="time" id="pickUpTimeEnd" required>
-
-
+        <input type="time" name="pickupEnd" id="pickUpTimeEnd">
         <input type="submit" id="submit" >
 
      </form>
 
-     <script src="donateScript.js"></script>
+     <script src="javascript/receiveScript.js"></script>
     </body>
 </html>

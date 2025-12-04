@@ -2,13 +2,13 @@
 <html>
     <head>
         <title>
-            FoodLoop Home
+            Listings
         </title>
         <meta charset="UTF-8">
 
         <!--Ensures that webpage will be responsive and adapt to screen size-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="homeStyle.css">
+        <link rel="stylesheet" href="css/lisitngsStyle.css">
 
         <!--Links for importing fonts: DM sans, Inter, and Intok Web-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,19 +47,19 @@
                 </li>
                 </div>
             </ul>     
-            
-            
+
+
            <ul class="navItems">
                 <li class="navItem Logo">
-                    <img src="FoodLoopLogoTransparent.png" alt="Website Logo: FoodLoop">
+                    <img src="images/FoodLoopLogoTransparent.png" alt="Website Logo: FoodLoop">
                 </li>
 
              <!-- Right-aligned group -->
             <div class="navRight">
                 <li class="navItem"><a class="navLink" href="homeMain.html">Home</a></li>
+                <li class="navItem"><a class="navLink" href="requestMain.html">Request</a></li>
                 <li class="navItem"><a class="navLink" href="donateMain.html">Donate</a></li>
                 <li class="navItem"><a class="navLink" href="receivedMain.html">Receive</a></li>
-                <li class="navItem"><a class="navLink" href="listingsMain.html">Listings</a></li>
 
                 <!-- Always visible hamburger -->
                 <li class="hamburger" onclick="showSideBar()">
@@ -73,38 +73,11 @@
         </ul>
     </nav>
 
-        <!--
-        <button class="foodPanBtn">
-        <a href="#"></a>
-        </button>
-        -->
+     <h1 class="formTitle">Listings</h1>
+     <div id="listingsContainer">
+        <!--Listings to appear dynamically here-->
+     </div>
 
-        <div class="buttonContainer">
-            <div class="btnBox">
-            <input type="button" class="button" id="foodPanBtn">
-            <p class="btnLabel">Food Pantry</p>
-            </div>    
-            <div class="btnBox">
-            <input type="button" class="button" id="offCollabBtn">
-            <p class="btnLabel">Official Collaborators</p>   
-            </div>
-            <div class="btnBox">
-            <input type="button" class="button" id="laFoodWasteBtn">
-            <p class="btnLabel">Louisiana Food Waste</p>
-            </div>
-        <div class="buttonContainer"></div>
-
-        <script>
-            function showSideBar(){
-                const sideBar = document.querySelector('.sideBar')
-                sideBar.style.display= 'flex'
-            }
-
-            function hideSidebar(){
-                const sideBar = document.querySelector('.sideBar')
-                sideBar.style.display= 'none'
-            }
-        </script>
-
+     <script src="javascript/listingsScript.js"></script>
     </body>
 </html>

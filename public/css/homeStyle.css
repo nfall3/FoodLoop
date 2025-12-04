@@ -158,13 +158,13 @@ nav {
 
 /*add images to the buttons*/
 #foodPanBtn {
-  background-image: url('foodPantry.png');
+  background-image: url('/images/foodPantry.png');
 }
 #offCollabBtn {
-  background-image: url('officialCollabs.png');
+  background-image: url('/images/officialCollabs.png');
 }
 #laFoodWasteBtn {
-  background-image: url('laFoodWaste.png');
+  background-image: url('/images/laFoodWaste.png');
 }
 
 /* For mobile screens, making it so only hamburger icon shows on smaller screens*/
