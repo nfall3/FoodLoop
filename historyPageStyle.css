@@ -113,3 +113,63 @@ nav {
 .sideBar a:hover {
   background-color: #3b7839;
 }
+
+
+/* ========================= Page Section ========================= */
+
+#heading{
+    display: block;
+    /*margin-top: 130px;*/
+    text-align: center;
+}
+
+#subHeader{
+    display: block;
+    text-align: center;
+    font-size: large;
+    margin-top: -20px;
+    margin-bottom: 15px;
+}
+
+/*details drop downs general styling to create layout similar to forms*/
+
+.content{
+    display: flex;
+    max-width: 81vw;
+    margin: 140px auto 50px;
+  background-color: #f5eee4;
+  padding: 40px 50px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+details{
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  display: block; 
+}
+
+details, p{
+  margin-top: 7px;
+  margin-left: 7px;
+}
+
+
+
+/* For mobile screens, making it so only hamburger icon shows on smaller screens*/
+
+@media (max-width: 768px) {  /*max width of screen*/
+  /* hide desktop links on mobile */
+  .navRight .navItem {
+    display: none;
+  }
+
+  /* hamburger stays visible */
+  .hamburger {
+    display: block;
+  }
+}
