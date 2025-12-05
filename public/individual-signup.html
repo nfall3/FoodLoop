@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Individual Signup</title>
+  <link rel="stylesheet" href="css/loginStyle.css">
+</head>
+
+<body>
+
+  <nav>
+    <ul class="navItems">
+      <li class="Logo"><img src="images/FoodLoopLogoTransparent.png" alt="FoodLoop Logo"></li>
+      <div class="navRight">
+        <li class="navItem"><a class="navLink" href="homeMain.html">Home</a></li>
+        <li class="navItem"><a class="navLink" href="login.html">Log In</a></li>
+      </div>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="form-container">
+
+      <h2>Individual Signup</h2>
+      <p>Please fill in your information below</p>
+
+      <input id="firstName" type="text" placeholder="First name" required>
+      <input id="lastName" type="text" placeholder="Last name" required>
+      <input id="phone" type="tel" placeholder="Phone number" required>
+      <input id="email" type="email" placeholder="email@domain.com" required>
+      <input id="password" type="password" placeholder="Create a password" required>
+      <input id="confirmPassword" type="password" placeholder="Confirm password" required>
+
+      <div class="checkbox-group">
+        <div class="checkbox-item">
+          <input id="privacy" type="checkbox">
+          <label>I agree to the <a href="#">privacy policy</a></label>
+        </div>
+
+        <div class="checkbox-item">
+          <input id="terms" type="checkbox">
+          <label>I agree to the <a href="#">terms and conditions</a></label>
+        </div>
+      </div>
+
+      <button onclick="handleIndividualSignup()">Complete Signup</button>
+
+      <p id="error" class="error"></p>
+      <p id="message" class="message"></p>
+
+      <footer>FAQ</footer>
+    </div>
+  </div>
+
+  <script>
+    function handleIndividualSignup() {
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+      const phone = document.getElementById("phone").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      const privacy = document.getElementById("privacy").checked;
+      const terms = document.getElementById("terms").checked;
+
+      const error = document.getElementById("error");
+      const message = document.getElementById("message");
+
+      if (password.includes(" ")) {
+        error.textContent = "Password cannot contain spaces";
+        message.textContent = "";
+        return;
+      }
+      if (password.length < 8 || password.length > 20) {
+        error.textContent = "Password must be between 8–20 characters";
+        message.textContent = "";
+        return;
+      }
+      if (!privacy || !terms) {
+        error.textContent = "You must agree to the policies.";
+        message.textContent = "";
+        return;
+      }
+      if (password !== confirmPassword) {
+        error.textContent = "Passwords don't match";
+        message.textContent = "";
+        return;
+      }
+
+      fetch("http://localhost:3001/individual-signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          phone,
+          email,
+          password
+        })
+      })
+      .then(res => {
+        if (res.status === 200) {
+          message.textContent = "Signup successful! Please login.";
+          error.textContent = "";
+        } else if (res.status === 409) {
+          error.textContent = "Email already registered";
+          message.textContent = "";
+        } else {
+          error.textContent = "Signup failed";
+          message.textContent = "";
+        }
+      })
+      .catch(() => {
+        error.textContent = "Signup failed";
+      });
+    }
+  </script>
+
+</body>
+</html>

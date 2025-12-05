@@ -2,9 +2,10 @@
 This edited version of the program requires a Microsoft SQL server on your local device, and an account with username "foodloop" and password "password123" to function!
 You will also need to create a database named "foodloop" with the following tables:
 
-users: id (int), password(varchar), email(varchar), role(varchar), created_at(datetime), user_id(varchar), name(varchar), city(varchar), state(varchar), profile_picture(text)
-profiles: id (int), user_id (int), first_name (varchar), last_name (varchar)
-requests: id (int), donationName(varchar), donationDesc(text), allergies(varchar), homeAddress(text), pickupDate(date), pickupStart(time), pickupEnd(time)
+users: id (int + primary key with identity(1,1)), password(varchar), email(varchar), role(varchar), created_at(datetime)
+profiles: id (int + primary key with identity(1,1)), user_id (int), first_name (varchar), last_name (varchar)
+requests: id (int + primary key with identity(1,1)), donationName(varchar), donationDesc(text), allergies(varchar), homeAddress(text), pickupDate(date), pickupStart(time), pickupEnd(time)
+individuals: id (int + primary key with identity(1,1)), firstName(varchar), lastName(varchar), phone(varchar), email(varchar), password(varchar)
 
 To run in terminal:
 1. Make sure you have npm and neccessary packages installed (express, mssql, cors, dotenv... if something gives you an error, just run "npm install [package name]")
@@ -69,6 +70,46 @@ app.post("/signup", async (req, res) => {
     res.status(500).json({ message: "Database error" });
   }
 });
+
+app.post("/individual-signup", async (req, res) => {
+  const { firstName, lastName, phone, email, password } = req.body;
+
+  try {
+    await poolConnect;
+
+    // Check if email already exists
+    const checkRequest = pool.request();
+    checkRequest.input("email", mysql.VarChar, email);
+
+    const checkResult = await checkRequest.query(
+      "SELECT * FROM individuals WHERE email = @email"
+    );
+
+    if (checkResult.recordset.length > 0) {
+      return res.status(409).json({ message: "Email already registered" });
+    }
+
+    // Insert new individual
+    const insertRequest = pool.request();
+    insertRequest.input("firstName", mysql.VarChar, firstName);
+    insertRequest.input("lastName", mysql.VarChar, lastName);
+    insertRequest.input("phone", mysql.VarChar, phone);
+    insertRequest.input("email", mysql.VarChar, email);
+    insertRequest.input("password", mysql.VarChar, password);
+
+    await insertRequest.query(`
+      INSERT INTO individuals (firstName, lastName, phone, email, password)
+      VALUES (@firstName, @lastName, @phone, @email, @password)
+    `);
+
+    res.status(200).json({ message: "Signup successful!" });
+
+  } catch (err) {
+    console.error("Individual signup failed:", err);
+    res.status(500).json({ message: "Database error" });
+  }
+});
+
 
 
 app.post("/login", async (req, res) => {
@@ -185,10 +226,10 @@ app.post("/submitDonation", async (req, res) => {
                 )
             `);
 
-        res.send("Donation successfully saved!");
+        res.status(200).json({ message: "Donation successfully saved!" });
     } catch (err) {
         console.error(err);
-        res.status(500).send("Error saving data.");
+        res.status(500).json({ message: "Error saving data." });
     }
 });
 
