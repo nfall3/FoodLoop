@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Pantries & Food Banks - Baton Rouge</title>
 
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
     <!-- Link to CSS file -->
     <link rel="stylesheet" href="LinkStyles.css" />
   </head>
@@ -45,10 +48,18 @@
       <!-- Pantries Tab -->
       <div id="pantries-tab" class="tab-content">
         <h1>Food Pantries & Food Banks</h1>
+        
+        <!-- Map Section -->
+        <div id="map"></div>
+        
+        <!-- Pantries List -->
         <div id="pantries-container"></div>
       </div>
     </div>
 
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
     <!-- JavaScript -->
     <script src="LinkScript.js"></script>
   </body>
