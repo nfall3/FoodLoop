@@ -2,7 +2,7 @@
 This edited version of the program requires a Microsoft SQL server on your local device, and an account with username "foodloop" and password "password123" to function!
 You will also need to create a database named "foodloop" with the following tables:
 
-users: id (int), password(varchar), email(varchar), role(varchar), created_at(datetime)
+users: id (int), password(varchar), email(varchar), role(varchar), created_at(datetime), user_id(varchar), name(varchar), city(varchar), state(varchar), profile_picture(text)
 profiles: id (int), user_id (int), first_name (varchar), last_name (varchar)
 requests: id (int), donationName(varchar), donationDesc(text), allergies(varchar), homeAddress(text), pickupDate(date), pickupStart(time), pickupEnd(time)
 
@@ -55,6 +55,7 @@ app.post("/signup", async (req, res) => {
     if (checkResult.recordset.length > 0) {
       return res.status(409).json({ message: "Email already registered" });
     }
+    const userId = "FL-" + Math.random().toString(36).substr(2, 9).toUpperCase();
 
     await pool.request()
       .input("email", mysql.VarChar, email)
@@ -93,6 +94,61 @@ app.post("/login", async (req, res) => {
   } catch (err) {
     console.error("Login failed:", err);
     res.status(500).json({ message: "Database error" });
+  }
+});
+
+// GET user profile by email
+app.get("/api/profile/:email", async (req, res) => {
+  const { email } = req.params;
+ 
+  try {
+    await poolConnect;
+   
+    const result = await pool.request()
+      .input("email", mysql.VarChar, email)
+      .query("SELECT user_id, email, name, phone, city, state, role, profile_picture FROM users WHERE email = @email");
+   
+    if (result.recordset.length === 0) {
+      return res.status(404).json({ message: "User not found" });
+    }
+   
+    res.json(result.recordset[0]);
+  } catch (err) {
+    console.error("Error fetching profile:", err);
+    res.status(500).json({ message: "Error fetching profile" });
+  }
+});
+
+// UPDATE user profile
+app.put("/api/profile/:email", async (req, res) => {
+  const { email } = req.params;
+  const { name, phone, city, state, role, profile_picture } = req.body;
+ 
+  try {
+    await poolConnect;
+   
+    const result = await pool.request()
+      .input("email", mysql.VarChar, email)
+      .input("name", mysql.VarChar, name)
+      .input("phone", mysql.VarChar, phone)
+      .input("city", mysql.VarChar, city)
+      .input("state", mysql.VarChar, state)
+      .input("role", mysql.VarChar, role)
+      .input("profile_picture", mysql.Text, profile_picture)
+      .query(`
+        UPDATE users
+        SET name = @name, phone = @phone, city = @city, state = @state, role = @role, profile_picture = @profile_picture
+        WHERE email = @email
+      `);
+   
+    if (result.rowsAffected[0] === 0) {
+      return res.status(404).json({ message: "User not found" });
+    }
+   
+    res.json({ message: "Profile updated successfully!" });
+  } catch (err) {
+    console.error("Error updating profile:", err);
+    res.status(500).json({ message: "Error updating profile" });
   }
 });
 
