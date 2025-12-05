@@ -29,7 +29,7 @@ window.addEventListener("DOMContentLoaded", async function () {
   if (!window.userEmail) {
     showToast("Please log in first", "error");
     setTimeout(() => {
-      window.location.href = "/login";
+      window.location.href = "/login.html";
     }, 2000);
     return;
   }
@@ -75,7 +75,7 @@ async function loadUserProfile() {
       showToast("User not found. Please sign up again.", "error");
       setTimeout(() => {
         localStorage.removeItem("userEmail");
-        window.location.href = "login.html";
+        window.location.href = "/login.html";
       }, 2000);
     } else {
       showToast("Error loading profile", "error");
@@ -186,7 +186,7 @@ function confirmLogout() {
   closeModal();
   showToast("Logged out successfully!", "success");
   setTimeout(() => {
-    window.location.href = "/login";
+    window.location.href = "/login.html";
   }, 1000);
 }
 
