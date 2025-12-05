@@ -34,30 +34,24 @@
         </div>
         <ul class="nav-links">
           <li>
-            <a href="#" onclick="showTab('home')" aria-label="Go to Home">Home</a >
+            <a href="homeMain.html" aria-label="Go to Home">Home</a>
           </li>
           <li>
-            <a href="#"
-              onclick="showTab('volunteer')"
-              aria-label="Volunteer Opportunities">Volunteer</a>
+            <a href="requestMain.html" aria-label="Make a Request for food">Request</a>
           </li>
           <li>
-            <a href="#" onclick="showTab('donate')" aria-label="Make a Donation"
-              >Donate</a>
+            <a href="donateMain.html" aria-label="Make a Donation">Donate</a>
           </li>
           <li>
-            <a href="#"
-              onclick="showTab('rescue')"
-              aria-label="Food Rescue Missions"
-              >Rescue</a>
+            <a href="receivedMain.html" aria-label="Food Rescue Missions">Receive</a>
           </li>
         </ul>
         <div
           class="profile-icon"
           role="button"
-          aria-label="User profile menu"
+          aria-label="Logout"
           tabindex="0"
-          onclick="editProfile()">KM
+          onclick="handleLogout()">
         </div>
       </nav>
     </header>
@@ -77,15 +71,10 @@
           tabindex="0">KM
           <div
             class="camera-icon"
-            onclick="triggerImageUpload()"
+            onclick="showPhotoMenu(event)"
             title="Upload profile photo"
             aria-label="Upload photo">
-          </div>
-          <div
-            class="edit-icon"
-            onclick="editProfile()"
-            title="Edit profile"
-            aria-label="Edit profile">
+            📷
           </div>
         </div>
 
@@ -95,6 +84,19 @@
           <p class="profile-role">Food Rescue Volunteer</p>
           <div class="profile-location">Baton Rouge, Louisiana</div>
 
+          <!-- Contact Details -->
+          <div class="contact-details">
+            <p class="user-id">
+              <strong>User ID:</strong> <span id="userID"></span>
+            </p>
+            <p>
+              <strong>Email:</strong> <span id="userEmail"></span>
+            </p>
+            <p>
+              <strong>Phone:</strong> <span id="userPhone"></span>
+            </p>
+          </div>
+
           <!-- User Statistics Grid -->
           <div class="profile-stats" role="region" aria-label="User statistics">
             <div
@@ -103,7 +105,7 @@
               role="button"
               tabindex="0"
               aria-label="24 Donations made. Click for details">
-              <span class="stat-number">24</span>
+              <span class="stat-number" id="donationsCount">24</span>
               <span class="stat-label">Donations</span>
             </div>
             <div
@@ -112,7 +114,7 @@
               role="button"
               tabindex="0"
               aria-label="18 Food rescues completed. Click for details">
-              <span class="stat-number">18</span>
+              <span class="stat-number" id="rescuesCount">18</span>
               <span class="stat-label">Rescues</span>
             </div>
             <div
@@ -121,7 +123,7 @@
               role="button"
               tabindex="0"
               aria-label="156 Meals saved from waste. Click for details">
-              <span class="stat-number">156</span>
+              <span class="stat-number" id="mealsCount">156</span>
               <span class="stat-label">Meals Saved</span>
             </div>
             <div
@@ -130,7 +132,7 @@
               role="button"
               tabindex="0"
               aria-label="42 Volunteer hours contributed. Click for details">
-              <span class="stat-number">42</span>
+              <span class="stat-number" id="hoursCount">42</span>
               <span class="stat-label">Hours</span>
             </div>
           </div>
@@ -151,6 +153,10 @@
         </div>
       </aside>
     </main>
+
+    <!-- Hidden file input for profile picture upload -->
+    <input type="file" id="avatarUpload" accept="image/*" style="display: none;" />
+
     <script src="javascript/ProfileScript.js"></script>
   </body>
 </html>
