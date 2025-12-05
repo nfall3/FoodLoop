@@ -18,7 +18,7 @@ body {
 /* NAVIGATION HEADER */
 
 .header {
-  background-color: #ffffff;
+  background-color: #326A2F;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
@@ -26,7 +26,7 @@ body {
 }
 
 .nav {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -35,33 +35,35 @@ body {
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
-  color: #0066cc;
+  color: #ffffff;
+  margin-left: 0;
 }
 
 .nav-links {
   display: flex;
   list-style: none;
   gap: 2rem;
+  margin-right: 0;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
   font-weight: 500;
   transition: color 0.3s;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-  color: #0066cc;
+  color: #000000;
 }
 
 /* TAB CONTENT */
 .tab-content {
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 1.5rem 1rem;
 }
 
 .tab-content h1 {
@@ -78,7 +80,7 @@ body {
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px 20px 40px 20px;
 }
 
 /* HEADER STYLES */
@@ -87,7 +89,8 @@ h1 {
   text-align: center;
   color: #333;
   font-size: 2em;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  margin-top: 10px;
   font-weight: 600;
 }
 
@@ -102,6 +105,7 @@ h1 {
   display: flex;
   gap: 20px;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
+  align-items: flex-start;
 }
 
 /* Card hover effect - lifts card slightly */
@@ -148,6 +152,7 @@ h1 {
 /* Content area - takes up remaining space in flex container */
 .content {
   flex: 1;
+  text-align: left;
 }
 
 /* Pantry name heading */
@@ -156,6 +161,7 @@ h1 {
   font-size: 1.5em;
   font-weight: 600;
   margin-bottom: 4px;
+  text-align: left;
 }
 
 /* Location text styling */
@@ -163,6 +169,7 @@ h1 {
   color: #666;
   font-size: 1em;
   margin-bottom: 12px;
+  text-align: left;
 }
 
 /* Description text styling */
@@ -170,6 +177,7 @@ h1 {
   color: #555;
   font-size: 0.95em;
   line-height: 1.5;
+  text-align: left;
 }
 
 /* LINK STYLES */
@@ -210,7 +218,18 @@ h1 {
   .pantry-card {
     flex-direction: column;
     align-items: center;
-    text-align: center;
+  }
+
+  /* Keep text left-aligned even on mobile */
+  .content {
+    text-align: left;
+    width: 100%;
+  }
+
+  .pantry-name,
+  .location,
+  .description {
+    text-align: left;
   }
 
   /* Reduce heading size on mobile */

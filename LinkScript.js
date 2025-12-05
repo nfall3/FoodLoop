@@ -1,5 +1,4 @@
 /* FOOD PANTRIES DATA */
-
 const pantriesData = [
   {
     id: 1,
@@ -93,129 +92,79 @@ const pantriesData = [
   },
 ];
 
-/*REACT COMPONENTS */
-// Individual Pantry Card Component
-function PantryCard({ pantry }) {
-  return (
-    <div className="pantry-card">
-      {/* Icon container with colored background */}
-      <div className={`icon-container ${pantry.iconColor}`}>
-        <div className="icon">{pantry.icon}</div>
+/* FUNCTIONS */
+
+// Function to create a pantry card HTML
+function createPantryCard(pantry) {
+  const websiteLink = pantry.website
+    ? `<a href="${pantry.website}" class="link" target="_blank" rel="noopener noreferrer">
+         Visit Website →
+       </a>`
+    : "";
+
+  return `
+    <div class="pantry-card">
+      <div class="icon-container ${pantry.iconColor}">
+        <div class="icon">${pantry.icon}</div>
       </div>
-
-      {/* Content section */}
-      <div className="content">
-        <h2 className="pantry-name">{pantry.name}</h2>
-        <p className="location">{pantry.location}</p>
-        <p className="description">{pantry.description}</p>
-
-        {/* Show website link if available */}
-        {pantry.website && (
-          <a
-            href={pantry.website}
-            className="link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Visit Website →
-          </a>
-        )}
+      <div class="content">
+        <h2 class="pantry-name">${pantry.name}</h2>
+        <p class="location">${pantry.location}</p>
+        <p class="description">${pantry.description}</p>
+        ${websiteLink}
       </div>
     </div>
-  );
+  `;
 }
 
-// Main App Component
-function App() {
-  // State to track which tab is active
-  const [activeTab, setActiveTab] = React.useState("pantries");
-
-  // Function to handle tab changes
-  const showTab = (tabName) => {
-    setActiveTab(tabName);
-  };
-
-  return (
-    <>
-      {/* Navigation Header */}
-      <header className="header">
-        <nav className="nav">
-          <div className="logo">FoodLoop</div>
-          <ul className="nav-links">
-            <li>
-              <a href="#" onClick={() => showTab("home")}>
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={() => showTab("volunteer")}>
-                Volunteer
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={() => showTab("donate")}>
-                Donate
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                onClick={() => showTab("pantries")}
-                className={activeTab === "pantries" ? "active" : ""}
-              >
-                Food Pantries
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-
-      {/* Main Content */}
-      <div className="container">
-        {/* Show content based on active tab */}
-        {activeTab === "home" && (
-          <div className="tab-content">
-            <h1>Welcome to FoodLoop</h1>
-            <p>Connecting communities with food resources in Baton Rouge.</p>
-          </div>
-        )}
-
-        {activeTab === "volunteer" && (
-          <div className="tab-content">
-            <h1>Volunteer Opportunities</h1>
-            <p>
-              Get involved with local food pantries and make a difference in
-              your community.
-            </p>
-          </div>
-        )}
-
-        {activeTab === "donate" && (
-          <div className="tab-content">
-            <h1>Donate</h1>
-            <p>Support local food pantries with monetary or food donations.</p>
-          </div>
-        )}
-
-        {activeTab === "pantries" && (
-          <>
-            {/* Page header */}
-            <h1>Food Pantries & Food Banks</h1>
-
-            {/* Render all pantry cards */}
-            <div id="pantries-container">
-              {pantriesData.map((pantry) => (
-                <PantryCard key={pantry.id} pantry={pantry} />
-              ))}
-            </div>
-          </>
-        )}
-      </div>
-    </>
-  );
+// Function to render all pantry cards
+function renderPantries() {
+  const container = document.getElementById("pantries-container");
+  const pantriesHTML = pantriesData.map(createPantryCard).join("");
+  container.innerHTML = pantriesHTML;
 }
 
-/* RENDER THE APP */
-// Get the root element and render the React app
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+// Function to show specific tab
+function showTab(tabName) {
+  // Hide all tabs
+  const tabs = document.querySelectorAll(".tab-content");
+  tabs.forEach((tab) => {
+    tab.style.display = "none";
+  });
+
+  // Show selected tab
+  const selectedTab = document.getElementById(`${tabName}-tab`);
+  if (selectedTab) {
+    selectedTab.style.display = "block";
+  }
+
+  // Update active nav link
+  const navLinks = document.querySelectorAll(".nav-links a");
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+    if (link.getAttribute("data-tab") === tabName) {
+      link.classList.add("active");
+    }
+  });
+}
+
+/* INITIALIZATION */
+
+// Initialize the app when DOM is loaded
+document.addEventListener("DOMContentLoaded", function () {
+  // Render pantries
+  renderPantries();
+
+  // Add click event listeners to nav links
+  const navLinks = document.querySelectorAll(".nav-links a");
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const tabName = this.getAttribute("data-tab");
+      showTab(tabName);
+    });
+  });
+
+  // Show pantries tab by default
+  showTab("pantries");
+});
