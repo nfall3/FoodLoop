@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="FoodLoop - Louisiana's platform for reducing food waste and fighting hunger through community food rescue and donations"
+    />
+    <meta
+      name="keywords"
+      content="food rescue, Louisiana, Baton Rouge, food waste, hunger relief, volunteer, donate"
+    />
+    <meta name="author" content="FoodLoop Team" />
+    <meta property="og:title" content="FoodLoop - User Profile" />
+    <meta
+      property="og:description"
+      content="Track your impact in Louisiana's fight against food waste and hunger"
+    />
+    <meta property="og:type" content="website" />
+    <title>FoodLoop - User Profile | Louisiana Food Rescue Platform</title>
+    <link rel="stylesheet" href="css/ProfileStyling.css" />
+  </head>
+
+  <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+
+    <!-- Header & Navigation -->
+    <header class="header" role="banner">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="logo" role="img" aria-label="FoodLoop Logo">
+          <a href="/" style="color: white; text-decoration: none">FoodLoop</a>
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a href="homeMain.html" aria-label="Go to Home">Home</a>
+          </li>
+          <li>
+            <a href="requestMain.html" aria-label="Make a Request for food">Request</a>
+          </li>
+          <li>
+            <a href="donateMain.html" aria-label="Make a Donation">Donate</a>
+          </li>
+          <li>
+            <a href="receivedMain.html" aria-label="Food Rescue Missions">Receive</a>
+          </li>
+        </ul>
+        <div
+          class="profile-icon"
+          role="button"
+          aria-label="Logout"
+          tabindex="0"
+          onclick="handleLogout()">
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="container" role="main">
+      <!-- User Profile Card -->
+      <aside
+        class="profile-card"
+        role="complementary"
+        aria-label="User profile information">
+        <!-- Avatar with upload/edit icons -->
+        <div
+          class="profile-avatar"
+          role="button"
+          aria-label="Profile picture"
+          tabindex="0">KM
+          <div
+            class="camera-icon"
+            onclick="showPhotoMenu(event)"
+            title="Upload profile photo"
+            aria-label="Upload photo">
+            📷
+          </div>
+        </div>
+
+        <!-- Profile Info -->
+        <div class="profile-info">
+          <h2 class="profile-name">Ke'Anna McKinney</h2>
+          <p class="profile-role">Food Rescue Volunteer</p>
+          <div class="profile-location">Baton Rouge, Louisiana</div>
+
+          <!-- Contact Details -->
+          <div class="contact-details">
+            <p class="user-id">
+              <strong>User ID:</strong> <span id="userID"></span>
+            </p>
+            <p>
+              <strong>Email:</strong> <span id="userEmail"></span>
+            </p>
+            <p>
+              <strong>Phone:</strong> <span id="userPhone"></span>
+            </p>
+          </div>
+
+          <!-- User Statistics Grid -->
+          <div class="profile-stats" role="region" aria-label="User statistics">
+            <div
+              class="stat-item"
+              onclick="showDetails('donations')"
+              role="button"
+              tabindex="0"
+              aria-label="24 Donations made. Click for details">
+              <span class="stat-number" id="donationsCount">24</span>
+              <span class="stat-label">Donations</span>
+            </div>
+            <div
+              class="stat-item"
+              onclick="showDetails('rescues')"
+              role="button"
+              tabindex="0"
+              aria-label="18 Food rescues completed. Click for details">
+              <span class="stat-number" id="rescuesCount">18</span>
+              <span class="stat-label">Rescues</span>
+            </div>
+            <div
+              class="stat-item"
+              onclick="showDetails('impact')"
+              role="button"
+              tabindex="0"
+              aria-label="156 Meals saved from waste. Click for details">
+              <span class="stat-number" id="mealsCount">156</span>
+              <span class="stat-label">Meals Saved</span>
+            </div>
+            <div
+              class="stat-item"
+              onclick="showDetails('hours')"
+              role="button"
+              tabindex="0"
+              aria-label="42 Volunteer hours contributed. Click for details">
+              <span class="stat-number" id="hoursCount">42</span>
+              <span class="stat-label">Hours</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="action-buttons">
+            <button
+              class="btn btn-log-activity"
+              onclick="logActivity()"
+              aria-label="Log your volunteer or donation activity">Log Activity
+            </button>
+            <button
+              class="btn btn-secondary"
+              onclick="editProfile()"
+              aria-label="Edit your profile information">Edit Profile
+            </button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Hidden file input for profile picture upload -->
+    <input type="file" id="avatarUpload" accept="image/*" style="display: none;" />
+
+    <script src="javascript/ProfileScript.js"></script>
+  </body>
+</html>
