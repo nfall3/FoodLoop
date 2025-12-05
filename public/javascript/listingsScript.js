@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const donations = await res.json();
 
         if (donations.length === 0) {
-          container.innerHTML = "<p>No donations found.</p>";
+          container.innerHTML = "<p>No listings found. Everyone is well fed!</p>";
           return;
         }
 
@@ -26,13 +26,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         donations.forEach(donation => {
           const div = document.createElement('div');
           div.className = 'donation';
+          const startTime = new Date(donation.pickupStart).toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'});
+          const endTime = new Date(donation.pickupEnd).toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'});
           div.innerHTML = `
             <h3>${donation.donationName}</h3>
             <p><strong>Description:</strong> ${donation.donationDesc}</p>
             <p><strong>Allergies:</strong> ${donation.allergies || 'None'}</p>
             <p><strong>Address:</strong> ${donation.homeAddress}</p>
             <p><strong>Pickup Date:</strong> ${new Date(donation.pickupDate).toLocaleDateString()}</p>
-            <p><strong>Pickup Time:</strong> ${donation.pickupStart} - ${donation.pickupEnd}</p>
+            <p><strong>Pickup Time:</strong> ${startTime} - ${endTime}</p>
           `;
           container.appendChild(div);
         });
