@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FoodLoop Login</title>
+  <link rel="stylesheet" href="css/loginStyle.css">
+</head>
+
+<body>
+
+  <nav>
+    <ul class="navItems">
+      <li class="Logo"><img src="images/FoodLoopLogoTransparent.png" alt="FoodLoop Logo"></li>
+      <div class="navRight">
+        <li class="navItem"><a class="navLink" href="homeMain.html">Home</a></li>
+        <li class="navItem"><a class="navLink" href="signup.html">Sign Up</a></li>
+      </div>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="form-container">
+
+      <h2>Log In</h2>
+      <p>Enter your email and password to access your account</p>
+
+      <input id="email" type="email" placeholder="email@domain.com" required>
+      <input id="password" type="password" placeholder="Enter your password" required>
+
+      <button onclick="handleLogin()">Log In</button>
+
+      <p id="error" class="error"></p>
+      <p id="message" class="message"></p>
+
+      <footer>FAQ</footer>
+    </div>
+  </div>
+
+  <script>
+    function handleLogin() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      fetch("http://localhost:3001/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      })
+      .then(res => res.json())
+      .then(data => {
+        const error = document.getElementById("error");
+        const message = document.getElementById("message");
+
+        if (data.message === "Login Successful!") {
+          message.textContent = "Login Successful!";
+          error.textContent = "";
+          setTimeout(() => {
+            window.location.href = "UserProfile.html";
+          }, 1000);
+        } else if (data.message === "Incorrect password") {
+          error.textContent = "Incorrect password";
+          message.textContent = "";
+        } else if (data.message === "User not found") {
+          error.textContent = "User not found";
+          message.textContent = "";
+        } else {
+          error.textContent = "Login failed";
+          message.textContent = "";
+        }
+      })
+      .catch(() => {
+        document.getElementById("error").textContent = "Login failed";
+      });
+    }
+  </script>
+
+</body>
+</html>

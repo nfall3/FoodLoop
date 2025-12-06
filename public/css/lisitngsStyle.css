@@ -1,0 +1,163 @@
+/* Reset + Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #f5eee4;
+  font-family: "DM Sans", "Inter", "Istok Web", sans-serif;
+  overflow-x: hidden;
+  color: #2b2b2b;
+}
+
+/* ========================= NAVIGATION ========================= */
+nav {
+  width: 100%;
+  background-color: #326a2f;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999999999;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navItems {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  list-style: none;
+}
+
+.Logo img {
+  height: 45px;
+  margin-left: 1vw;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 1.2vw;
+}
+
+.navItem {
+  list-style: none;
+}
+
+.navLink {
+  color: white;
+  text-decoration: none;
+  padding: 10px 16px;
+  display: block;
+  font-weight: 500;
+  transition: background-color 0.6s ease-in-out;
+}
+
+.navLink:hover {
+  background-color: #3b7839;
+  border-radius: 4px;
+}
+
+/* Hamburger icon (visible on all screens for now) */
+.hamburger {
+  display: block;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.hamburger svg {
+  fill: #fff;
+  transition: transform 0.2s ease;
+}
+
+.hamburger:hover svg {
+  transform: scale(1.1);
+}
+
+/* Sidebar (mobile) */
+.sideBar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 230px;
+  z-index: 999;
+  background-color: #326a2f;
+  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding-top: 15px;
+}
+
+.sideBar li {
+  width: 100%;
+}
+
+.sideBar a {
+  width: 100%;
+  color: white;
+  text-decoration: none;
+  padding: 15px 20px;
+  display: block;
+  transition: background-color 0.2s ease;
+}
+
+.sideBar a:hover {
+  background-color: #3b7839;
+}
+
+/* Layout of the listings container */
+#listingsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin-top: 80px;
+}
+
+/* Each donation card */
+.donation {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+}
+
+/* Text styles */
+.donation h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.donation p {
+  margin: 6px 0;
+  color: #555;
+}
+
+.donation p strong {
+  color: #222;
+}
+
+
+
+
+/* ========================= RESPONSIVE ========================= */
+@media (max-width: 768px) {
+  .navRight {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
