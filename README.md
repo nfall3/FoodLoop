@@ -6,3 +6,21 @@ FoodLoop offers a structured signup system that separates users by role so each 
 The website also provides an educational history page explaining food waste in Louisiana, a resource page that directs users to nearby food pantries, and a FAQ page that answers common questions. To promote safe food sharing, all donors, individuals, and shelters sign liability agreements so FoodLoop is not responsible for illness or issues that may occur from donated food. Volunteers can also choose to help deliver food to individuals who cannot travel.
 
 Each page includes a consistent navigation bar to make the interface easy to understand for people of all ages and backgrounds.
+
+#Key Features
+
+1. Role-Based Signup System
+FoodLoop uses a two-path signup system with different fields depending on the user’s role.
+
+Business and volunteer signup includes:
+- Email and password
+- Agreement to privacy policy and terms
+- Redirection to an additional details page
+  
+Individual signup includes:
+- First and last name
+- Phone number
+- Email and password
+- Agreement to policies
+
+Each signup validates the information before sending it to the server. Data is stored in the database so each user has a unique login account.
