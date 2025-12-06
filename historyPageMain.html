@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            LA Food Waste
+        </title>
+        <meta charset="UTF-8">
+
+        <!--Ensures that webpage will be responsive and adapt to screen size-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="historyPageStyle.css">
+
+        <!--Links for importing fonts: DM sans, Inter, and Intok Web-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100..900&family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <nav>
+            <!--Made a side Bar for smaller screen sizes, AKA: Mobile devices-->
+            <!--Original Design did not include the side bar-->
+            <ul class="sideBar">
+                <!--The links will lead to the other website pages-->
+                <!--I.E: volunteerMain.html-->
+                <!--Preferably create them before linking to them-->
+                <div>
+                <li onclick=hideSidebar() class="navLink">
+                    <a href="#">
+                       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>  
+                    </a>
+                </li>
+                  <li class="navLink">
+                    <a class="navLink" href="homeMain.html">Home</a>  <!--Main Page linked-->
+                </li>
+                <li class="navLink">
+                    <a class="navLink" href="">Profile</a>  <!--Will fill out link once we have remaining pages-->
+                </li>
+                <!--Removed volunteer since the form is organization exclusive-->
+                 <li class="navLink">
+                    <a class="navLink" href="">Listings</a>  <!--Will fill out link once we have remaining pages-->
+                </li>
+
+
+                <!--Moved FAQ from bottom of webpage to the side bar for a better look-->
+                <li class="navLink">
+                    <a class="navLink" href="">FAQ</a>  <!--Will fill out link once we have remaining pages-->
+                </li>
+                </div>
+            </ul>     
+
+
+           <ul class="navItems">
+                <li class="navItem Logo">
+                    <img src="FoodLoopLogoTransparent.png" alt="Website Logo: FoodLoop">
+                </li>
+
+             <!-- Right-aligned group -->
+            <div class="navRight">
+                <li class="navItem"><a class="navLink" href="homeMain.html">Home</a></li>     <!--Main page linked-->       
+                <!--Removed volunteer since this form will be organization exclusive-->
+                <li class="navItem"><a class="navLink" href="">Listings</a></li>
+                <li class="navItem"><a class="navLink" href="">Profile</a></li>
+
+                <!-- Always visible hamburger -->
+                <li class="hamburger" onclick="showSideBar()">
+                         <a href="#">
+                         <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#fff">
+                             <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+                         </svg>
+                       </a>
+                 </li>
+            </div>
+        </ul>
+    </nav>
+
+    
+
+    <div class="content">
+        <h1 id="heading">Food Waste</h1>
+    <h2 id="subHeader">A Louisiana History</h2>
+        <p>
+         <b>  A State of Food and Culture </b><br><br>
+
+Louisiana is famous for gumbo pots, crawfish boils, and family gatherings, yet many families struggle to know where their next meal will come from. Hunger in the state has deep roots, stretching back centuries to the era of plantation agriculture. <br>
+    <details>
+     <summary> Fun Fact</summary> 
+     <p> Cajun and Creole families developed creative ways to stretch meals and avoid waste, practices that are still part of Louisiana’s rich culinary traditions today.</p> 
+    </details>
+<b>Roots of Hunger: Slavery and Sharecropping</b> 
+
+From colonial times through the 19th century, enslaved Africans and their descendants produced sugar, cotton, and other crops—but rarely had control over the food they grew. After slavery, many became tenant farmers or sharecroppers, often paid very little and saddled with debts, leaving them vulnerable to hunger. <br><br>
+
+Food was not just sustenance; it was a tool of control. Even communities with strong food traditions could not fully overcome the economic inequalities that left some areas more at risk for food insecurity. <br><br>
+
+<b>Industrial Agriculture and Modern Challenges</b>
+
+By the 20th century, large-scale commodity farming shifted the state’s food system toward profit over people. Plenty of food existed—but not everyone could access it. <br><br>
+
+Today, nearly 1 in 6 Louisianans experience food insecurity, including hundreds of thousands of children. Hurricanes, economic inequality, and “food deserts” in some neighborhoods make the problem worse.
+
+<b>The Rise of Food Banks and Community Solutions </b>
+
+In the 1980s, large-scale food banks emerged to respond to growing need. Second Harvest Food Bank, founded in 1982, began rescuing surplus food from grocery stores, manufacturers, and restaurants, redirecting it to families in need. Over time, it became Louisiana’s largest hunger-fighting organization, working with hundreds of community partners.
+
+<details>
+    <summary>Did You Know? </summary>
+    <p>
+        Programs like Second Harvest’s “Rescue Runner” pick up surplus food and deliver it quickly to shelters and pantries—reducing waste while feeding families.
+    </p>
+</details>
+Community composting projects and university initiatives now complement food rescue programs, keeping food scraps out of landfills and turning them into compost to improve soil and reduce methane emissions.
+
+<b>Food Waste in Louisiana</b>
+
+Louisiana reflects the national problem: about 40% of food produced in the U.S. goes to waste, from crops left unharvested to leftovers in homes and restaurants. Households alone throw away hundreds of dollars worth of food each year, while restaurants and institutions contribute significant amounts of waste.
+
+<details>
+<summary>Environmental Impact: </summary>
+    <p>
+        Rotting food in landfills produces methane, a powerful greenhouse gas responsible for about 60% of emissions from U.S. landfills.
+    </p>
+    </details>
+
+<b>Linking Food Waste and Hunger</b>
+
+Local organizations increasingly see food waste and hunger as connected problems. Programs that rescue, redistribute, and compost food help both the environment and communities in need. <br><br> By understanding this history, Louisianans can honor the state’s food culture while building a future where less food is wasted and more people have enough to eat.
+        </p>
+    </div>
+
+    <script src="historyPageScript.js"></script>
+    </body>
+</html>
