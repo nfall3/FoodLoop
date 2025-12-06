@@ -154,7 +154,7 @@ This consistent structure makes the site easy to explore and prevents users from
 - The website will open in your browser
 - You must still run the Node.js server for login and signup to work
 
-2. Running the Backend with Node.js
+2. Running the Backend with Node.js (another way to run the website)
 This is required for all database features.
 - Open the terminal inside the project folder
 - Install backend dependencies
@@ -166,6 +166,7 @@ This is required for all database features.
 - Open the link in your browser to use the full site
 
 #Team Contributions
+
 Nene Fall
 - Project Manager
 - Managed the Kanban board and assigned tasks
