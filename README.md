@@ -24,7 +24,7 @@ Individual signup includes:
 - Email and password
 - Agreement to policies
 
-Each signup validates the information before sending it to the server. Data is stored in the database so each user has a unique login account.
+Each signup validates the information before sending it to the server. Data is stored in the database so each user has a unique login account. When activity is logged and submitted, as a thank you and website will show confetti.
 
 2. Login System
 The login page allows users to access their account using the email and password they created. On successful login, users are redirected to their profile page. Login errors are clearly displayed on the screen, such as incorrect passwords or missing accounts. This helps users understand the issue without confusion.
@@ -198,4 +198,6 @@ Christian Frazier
 - Produced the commercial video for the project
 
 Hermyone Green
+- ?
+#PRESENTATION CANVA LINK
 - ?
