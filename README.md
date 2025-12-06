@@ -1,4 +1,3 @@
-#FoodLoop
 #Project Overview
 FoodLoop is a community-focused web application designed to help reduce food waste in Louisiana while supporting individuals, families, and shelters that experience food insecurity. The platform connects three groups: local businesses donating surplus food, volunteers who assist with distribution, and individuals or families who need food support. Our goal is to build a tool that is simple to use, helps people access food more easily, and gives donors a safe and organized way to share surplus items.
 FoodLoop offers a structured signup system that separates users by role so each person sees features that match their needs. Business owners and volunteers complete one type of signup, while individuals in need complete another. Once registered, users can log in, view their profile, request or donate food, and navigate through resources that support food access in Louisiana.
