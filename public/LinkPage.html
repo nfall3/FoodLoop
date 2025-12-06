@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Pantries & Food Banks - Baton Rouge</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="css/LinkStyles.css" />
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="nav">
+        <div class="logo">
+        <img src="/images/FoodLoopLogoTransparent.png" alt="FoodLoop Logo" style="height: 50px;">
+        </div>
+        <ul class="nav-links">
+          <li><a href="#" data-tab="home">Home</a></li>
+          <li><a href="#" data-tab="volunteer">Volunteer</a></li>
+          <li><a href="#" data-tab="donate">Donate</a></li>
+          <li><a href="#" data-tab="pantries" class="active">Food Pantries</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="container">
+      <!-- Home Tab -->
+      <div id="home-tab" class="tab-content" style="display: none;">
+        <h1>Welcome to FoodLoop</h1>
+        <p>Connecting communities with food resources in Baton Rouge.</p>
+      </div>
+
+      <!-- Volunteer Tab -->
+      <div id="volunteer-tab" class="tab-content" style="display: none;">
+        <h1>Volunteer Opportunities</h1>
+        <p>Get involved with local food pantries and make a difference in your community.</p>
+      </div>
+
+      <!-- Donate Tab -->
+      <div id="donate-tab" class="tab-content" style="display: none;">
+        <h1>Donate</h1>
+        <p>Support local food pantries with monetary or food donations.</p>
+      </div>
+
+      <!-- Pantries Tab -->
+      <div id="pantries-tab" class="tab-content">
+        <h1>Food Pantries & Food Banks</h1>
+        
+        <!-- Map Section -->
+        <div id="map"></div>
+        
+        <!-- Pantries List -->
+        <div id="pantries-container"></div>
+      </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- JavaScript -->
+    <script src="javascript/LinkScript.js"></script>
+  </body>
+</html>
