@@ -7,12 +7,48 @@ profiles: id (int + primary key with identity(1,1)), user_id (int), first_name (
 requests: id (int + primary key with identity(1,1)), donationName(varchar), donationDesc(text), allergies(varchar), homeAddress(text), pickupDate(date), pickupStart(time), pickupEnd(time)
 individuals: id (int + primary key with identity(1,1)), firstName(varchar), lastName(varchar), phone(varchar), email(varchar), password(varchar)
 
+
+users:
+id INT IDENTITY(1,1) PRIMARY KEY,
+  email VARCHAR(255),
+  password VARCHAR(255),
+  name VARCHAR(255),
+  phone VARCHAR(50),
+  city VARCHAR(255),
+  state VARCHAR(255),
+  role VARCHAR(100),
+  profile_picture TEXT,
+  user_id VARCHAR(50)
+
+individuals:
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  firstName VARCHAR(255),
+  lastName VARCHAR(255),
+  phone VARCHAR(50),
+  email VARCHAR(255),
+  password VARCHAR(255),
+  user_id VARCHAR(50),
+  city VARCHAR(255),
+  state VARCHAR(255),
+  profile_picture TEXT
+
+requests:
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  donationName VARCHAR(255),
+  donationDesc TEXT,
+  allergies VARCHAR(255),
+  homeAddress TEXT,
+  pickupDate DATE,
+  pickupStart TIME,
+  pickupEnd TIME
+
 To run in terminal:
 1. Make sure you have npm and neccessary packages installed (express, mssql, cors, dotenv... if something gives you an error, just run "npm install [package name]")
 2. While still in the Foodloop directory, run "node server.js" to start the backend server.
 3. Go to http://localhost:3001/homeMain.html in your web browser.
 4. Website should be fully functional!
 */
+
 
 const express = require("express");
 const mysql = require("mssql");
@@ -21,11 +57,12 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 const app = express();
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors());
 
+// SQL CONNECTION
 const db = {
   user: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
@@ -35,35 +72,39 @@ const db = {
     encrypt: true,
     trustServerCertificate: true,
   },
-  port: 1433
+  port: 1433,
 };
 
 const pool = new mysql.ConnectionPool(db);
 const poolConnect = pool.connect();
 
+/*USER SIGNUP (for "users" table only) */
 app.post("/signup", async (req, res) => {
   const { email, password } = req.body;
 
   try {
     await poolConnect;
 
-    const request = pool.request();
-    request.input("email", mysql.VarChar, email);
-    request.input("password", mysql.VarChar, password);
+    const check = await pool.request()
+      .input("email", mysql.VarChar, email)
+      .query("SELECT * FROM users WHERE email=@email");
 
-    const checkResult = await request.query("SELECT * FROM users WHERE email = @email");
-
-    if (checkResult.recordset.length > 0) {
+    if (check.recordset.length > 0) {
       return res.status(409).json({ message: "Email already registered" });
     }
+
     const userId = "FL-" + Math.random().toString(36).substr(2, 9).toUpperCase();
 
     await pool.request()
       .input("email", mysql.VarChar, email)
       .input("password", mysql.VarChar, password)
-      .query("INSERT INTO users (email, password) VALUES (@email, @password)");
+      .input("user_id", mysql.VarChar, userId)
+      .query(`
+        INSERT INTO users (email, password, user_id)
+        VALUES (@email, @password, @user_id)
+      `);
 
-    res.status(200).json({ message: "Signup successful!" });
+    res.json({ message: "Signup successful!" });
 
   } catch (err) {
     console.error("Signup failed:", err);
@@ -71,38 +112,36 @@ app.post("/signup", async (req, res) => {
   }
 });
 
+/*INDIVIDUAL SIGNUP (individuals table) */
 app.post("/individual-signup", async (req, res) => {
   const { firstName, lastName, phone, email, password } = req.body;
 
   try {
     await poolConnect;
 
-    // Check if email already exists
-    const checkRequest = pool.request();
-    checkRequest.input("email", mysql.VarChar, email);
+    const check = await pool.request()
+      .input("email", mysql.VarChar, email)
+      .query("SELECT * FROM individuals WHERE email=@email");
 
-    const checkResult = await checkRequest.query(
-      "SELECT * FROM individuals WHERE email = @email"
-    );
-
-    if (checkResult.recordset.length > 0) {
+    if (check.recordset.length > 0) {
       return res.status(409).json({ message: "Email already registered" });
     }
 
-    // Insert new individual
-    const insertRequest = pool.request();
-    insertRequest.input("firstName", mysql.VarChar, firstName);
-    insertRequest.input("lastName", mysql.VarChar, lastName);
-    insertRequest.input("phone", mysql.VarChar, phone);
-    insertRequest.input("email", mysql.VarChar, email);
-    insertRequest.input("password", mysql.VarChar, password);
+    const userId = "FL-" + Math.random().toString(36).substr(2, 9).toUpperCase();
 
-    await insertRequest.query(`
-      INSERT INTO individuals (firstName, lastName, phone, email, password)
-      VALUES (@firstName, @lastName, @phone, @email, @password)
-    `);
+    await pool.request()
+      .input("firstName", mysql.VarChar, firstName)
+      .input("lastName", mysql.VarChar, lastName)
+      .input("phone", mysql.VarChar, phone)
+      .input("email", mysql.VarChar, email)
+      .input("password", mysql.VarChar, password)
+      .input("user_id", mysql.VarChar, userId)
+      .query(`
+        INSERT INTO individuals (firstName, lastName, phone, email, password, user_id)
+        VALUES (@firstName, @lastName, @phone, @email, @password, @user_id)
+      `);
 
-    res.status(200).json({ message: "Signup successful!" });
+    res.json({ message: "Signup successful!" });
 
   } catch (err) {
     console.error("Individual signup failed:", err);
@@ -110,141 +149,198 @@ app.post("/individual-signup", async (req, res) => {
   }
 });
 
-
-
+/* LOGIN (works for both tables) */
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
     await poolConnect;
 
-    const result = await pool.request()
+    let result = await pool.request()
       .input("email", mysql.VarChar, email)
-      .query("SELECT * FROM users WHERE email = @email");
+      .query("SELECT * FROM users WHERE email=@email");
+
+    if (result.recordset.length === 0) {
+      result = await pool.request()
+        .input("email", mysql.VarChar, email)
+        .query("SELECT * FROM individuals WHERE email=@email");
+    }
 
     if (result.recordset.length === 0) {
       return res.json({ message: "User not found" });
     }
 
     const user = result.recordset[0];
-    if (user.password === password) {
-      res.json({ message: "Login Successful!" });
-    } else {
-      res.json({ message: "Incorrect password" });
+
+    if (user.password !== password) {
+      return res.json({ message: "Incorrect password" });
     }
+
+    res.json({ message: "Login Successful!" });
+
   } catch (err) {
     console.error("Login failed:", err);
     res.status(500).json({ message: "Database error" });
   }
 });
 
-// GET user profile by email
-app.get("/api/profile/:email", async (req, res) => {
-  const { email } = req.params;
- 
-  try {
-    await poolConnect;
-   
-    const result = await pool.request()
-      .input("email", mysql.VarChar, email)
-      .query("SELECT user_id, email, name, phone, city, state, role, profile_picture FROM users WHERE email = @email");
-   
-    if (result.recordset.length === 0) {
-      return res.status(404).json({ message: "User not found" });
-    }
-   
-    res.json(result.recordset[0]);
-  } catch (err) {
-    console.error("Error fetching profile:", err);
-    res.status(500).json({ message: "Error fetching profile" });
-  }
-});
-
-// UPDATE user profile
+/* UPDATE PROFILE (users + individuals)*/
 app.put("/api/profile/:email", async (req, res) => {
   const { email } = req.params;
   const { name, phone, city, state, role, profile_picture } = req.body;
- 
+
   try {
     await poolConnect;
-   
-    const result = await pool.request()
+
+    // Name split for individuals
+    const nameParts = name ? name.split(" ") : [""];
+    const firstName = nameParts[0];
+    const lastName = nameParts.slice(1).join(" ") || "";
+
+    /* UPDATE USERS TABLE */
+    let result = await pool.request()
       .input("email", mysql.VarChar, email)
-      .input("name", mysql.VarChar, name)
-      .input("phone", mysql.VarChar, phone)
-      .input("city", mysql.VarChar, city)
-      .input("state", mysql.VarChar, state)
-      .input("role", mysql.VarChar, role)
-      .input("profile_picture", mysql.Text, profile_picture)
+      .input("name", mysql.VarChar, name || null)
+      .input("phone", mysql.VarChar, phone || null)
+      .input("city", mysql.VarChar, city || null)
+      .input("state", mysql.VarChar, state || null)
+      .input("role", mysql.VarChar, role || null)
+      .input("profile_picture", mysql.Text, profile_picture || null)
       .query(`
         UPDATE users
-        SET name = @name, phone = @phone, city = @city, state = @state, role = @role, profile_picture = @profile_picture
-        WHERE email = @email
+        SET name=@name, phone=@phone, city=@city, state=@state,
+            role=@role, profile_picture=@profile_picture
+        WHERE email=@email
       `);
-   
-    if (result.rowsAffected[0] === 0) {
-      return res.status(404).json({ message: "User not found" });
+
+    if (result.rowsAffected[0] > 0) {
+      return res.json({ message: "Profile updated successfully!" });
     }
-   
-    res.json({ message: "Profile updated successfully!" });
+
+    /* UPDATE INDIVIDUALS TABLE */
+    result = await pool.request()
+      .input("email", mysql.VarChar, email)
+      .input("firstName", mysql.VarChar, firstName)
+      .input("lastName", mysql.VarChar, lastName)
+      .input("phone", mysql.VarChar, phone || null)
+      .input("city", mysql.VarChar, city || null)
+      .input("state", mysql.VarChar, state || null)
+      .input("profile_picture", mysql.Text, profile_picture || null)
+      .query(`
+        UPDATE individuals
+        SET firstName=@firstName, lastName=@lastName, phone=@phone,
+            city=@city, state=@state, profile_picture=@profile_picture
+        WHERE email=@email
+      `);
+
+    if (result.rowsAffected[0] > 0) {
+      return res.json({ message: "Profile updated successfully!" });
+    }
+
+    return res.status(404).json({ message: "User not found" });
+
   } catch (err) {
     console.error("Error updating profile:", err);
     res.status(500).json({ message: "Error updating profile" });
   }
 });
 
+/* GET PROFILE */
+app.get("/api/profile/:email", async (req, res) => {
+  const { email } = req.params;
+
+  try {
+    await poolConnect;
+
+    // Try users table first
+    let user = await pool.request()
+      .input("email", mysql.VarChar, email)
+      .query(`
+        SELECT email, name, phone, city, state, role, profile_picture, user_id
+        FROM users WHERE email=@email
+      `);
+
+    if (user.recordset.length > 0) {
+      return res.json(user.recordset[0]);
+    }
+
+    // Try individuals table
+    let indiv = await pool.request()
+      .input("email", mysql.VarChar, email)
+      .query(`
+        SELECT firstName, lastName, phone, email, user_id, city, state, profile_picture
+        FROM individuals WHERE email=@email
+      `);
+
+    if (indiv.recordset.length === 0) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const u = indiv.recordset[0];
+
+    return res.json({
+      email: u.email,
+      name: `${u.firstName} ${u.lastName}`,
+      phone: u.phone,
+      city: u.city,
+      state: u.state,
+      role: "Individual",
+      user_id: u.user_id,
+      profile_picture: u.profile_picture
+    });
+
+  } catch (err) {
+    console.error("Error fetching profile:", err);
+    res.status(500).json({ message: "Error fetching profile" });
+  }
+});
+
+/* DONATION SUBMIT*/
 app.post("/submitDonation", async (req, res) => {
-    try {
-        let pool = await mysql.connect(db);
-        const fixTime = t => t ? `${t}:00` : null;
+  try {
+    let p = await mysql.connect(db);
 
-        await pool.request()
-            .input('donationName', mysql.VarChar, req.body.donationName)
-            .input('donationDesc', mysql.Text, req.body.donationDesc)
-            .input('allergies', mysql.VarChar, req.body.allergies)
-            .input('homeAddress', mysql.Text, req.body.homeAddress)
-            .input('pickupDate', mysql.Date, req.body.pickupDate)
-            .input('pickupStart', mysql.VarChar, req.body.pickupStart)
-            .input('pickupEnd', mysql.VarChar, req.body.pickupEnd)
-            .query(`
-                INSERT INTO requests (
-                    donationName,
-                    donationDesc,
-                    allergies,
-                    homeAddress,
-                    pickupDate,
-                    pickupStart,
-                    pickupEnd
-                ) VALUES (
-                    @donationName,
-                    @donationDesc,
-                    @allergies,
-                    @homeAddress,
-                    @pickupDate,
-                    @pickupStart,
-                    @pickupEnd
-                )
-            `);
+    await p.request()
+      .input("donationName", mysql.VarChar, req.body.donationName)
+      .input("donationDesc", mysql.Text, req.body.donationDesc)
+      .input("allergies", mysql.VarChar, req.body.allergies)
+      .input("homeAddress", mysql.Text, req.body.homeAddress)
+      .input("pickupDate", mysql.Date, req.body.pickupDate)
+      .input("pickupStart", mysql.VarChar, req.body.pickupStart)
+      .input("pickupEnd", mysql.VarChar, req.body.pickupEnd)
+      .query(`
+        INSERT INTO requests (
+          donationName, donationDesc, allergies, homeAddress,
+          pickupDate, pickupStart, pickupEnd
+        )
+        VALUES (
+          @donationName, @donationDesc, @allergies, @homeAddress,
+          @pickupDate, @pickupStart, @pickupEnd
+        )
+      `);
 
-        res.status(200).json({ message: "Donation successfully saved!" });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: "Error saving data." });
-    }
+    res.json({ message: "Donation successfully saved!" });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error saving donation" });
+  }
 });
 
+/*LIST DONATIONS*/
 app.get("/listDonations", async (req, res) => {
-    try {
-        const pool = await mysql.connect(db);
-        const result = await pool.request().query("SELECT * FROM requests ORDER BY pickupDate DESC");
-        res.json(result.recordset);
-    } catch (err) {
-        console.error("Error fetching donations:", err);
-        res.status(500).json({ message: "Database error" });
-    }
+  try {
+    const p = await mysql.connect(db);
+    const result = await p.request().query("SELECT * FROM requests ORDER BY pickupDate DESC");
+    res.json(result.recordset);
+  } catch (err) {
+    console.error("Error loading donations:", err);
+    res.status(500).json({ message: "Error loading donation list" });
+  }
 });
 
+/* START SERVER */
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log("Server running on port " + PORT);
 });
