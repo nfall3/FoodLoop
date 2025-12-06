@@ -176,7 +176,7 @@ nav {
 
 /*add images to the buttons*/
 #foodRecoveryBtn {
-  background-image: url('foodRecoveryNetwork.png');
+  background-image: url('/images/foodRecoveryNetwork.png');
 }
 
 /* For mobile screens, making it so only hamburger icon shows on smaller screens*/
